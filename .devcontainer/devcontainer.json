@@ -1,0 +1,50 @@
+{
+  "name": "Angular and Django Codespace",
+  "dockerFile": "Dockerfile",
+  "extensions": ["ms-vscode.vscode-typescript-tslint-plugin", "dbaeumer.vscode-eslint"],
+  "postCreateCommand": "yarn && python manage.py migrate",
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash",
+    "python.pythonPath": "/usr/local/bin/python",
+    "typescript.tsdk": "/usr/local/lib/node_modules/typescript/lib"
+  },
+  "forwardPorts": [8000],
+  "mounts": ["source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"],
+  "appPort": [4200],
+  "tasks": [
+    {
+      "label": "Start Django Server",
+      "command": "python",
+      "args": ["manage.py", "runserver", "0.0.0.0:8000"],
+      "type": "shell",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "focus": false,
+        "group": "build"
+      },
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "Start Angular Dev Server",
+      "command": "yarn",
+      "args": ["start"],
+      "type": "shell",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "focus": false,
+        "group": "build"
+      },
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}

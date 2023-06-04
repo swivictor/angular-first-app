@@ -1,50 +1,25 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
 {
-  "name": "Angular and Django Codespace",
-  "dockerFile": "Dockerfile",
-  "extensions": ["ms-vscode.vscode-typescript-tslint-plugin", "dbaeumer.vscode-eslint"],
-  "postCreateCommand": "yarn && python manage.py migrate",
-  "settings": {
-    "terminal.integrated.shell.linux": "/bin/bash",
-    "python.pythonPath": "/usr/local/bin/python",
-    "typescript.tsdk": "/usr/local/lib/node_modules/typescript/lib"
-  },
-  "forwardPorts": [8000],
-  "mounts": ["source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"],
-  "appPort": [4200],
-  "tasks": [
-    {
-      "label": "Start Django Server",
-      "command": "python",
-      "args": ["manage.py", "runserver", "0.0.0.0:8000"],
-      "type": "shell",
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared",
-        "focus": false,
-        "group": "build"
-      },
-      "problemMatcher": [],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      }
-    },
-    {
-      "label": "Start Angular Dev Server",
-      "command": "yarn",
-      "args": ["start"],
-      "type": "shell",
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared",
-        "focus": false,
-        "group": "build"
-      },
-      "problemMatcher": [],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      }
-    }
-  ]
+	"name": "Node.js & TypeScript",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/typescript-node:0-18",
+	"features": {
+		"ghcr.io/devcontainers-contrib/features/angular-cli:2": {}
+	}
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "yarn install",
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
 }
